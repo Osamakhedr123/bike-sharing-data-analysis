@@ -1,1 +1,2 @@
 # US-bike-share-data-analysis
+In this project, the program analyzes the data provided for the bike share market in the period of 6 months from 3 different states and outputs the desired analytics to the user using a pandas dataframe. One further improvement could be downloading the csv data files directly from the internet rather than having to provide them along with the program in the same directory, but for the purpose of this project, the files were too big to download and the user would have to wait for a long period of time.
