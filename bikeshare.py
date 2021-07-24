@@ -103,7 +103,6 @@ def load_data(city, month, day):
     if day != 'all':
         df = df[df['day_of_week'] == day]    
     
-    
     return df
     
     
@@ -115,7 +114,6 @@ def time_stats(df,day,month):
     start_time = time.time()
 
     # display the most common month
-
     if month=='all':
         most_common_month = df['month'].mode()[0]
         print("The most common month is :", most_common_month)
@@ -127,10 +125,6 @@ def time_stats(df,day,month):
 
 
     # display the most common start hour
-
-
-
-
     print("\nThis took %s seconds." % (time.time() - start_time))
     print('-'*40)
 
@@ -142,17 +136,14 @@ def station_stats(df):
     start_time = time.time()
 
     # display most commonly used start station
-
     most_common_start_station = df['Start Station'].mode()[0]
     print("The most commonly used start station :", most_common_start_station)
    
     # display most commonly used end station
-
     most_common_end_station = df['End Station'].mode()[0]
     print("The most commonly used end station :", most_common_end_station)
 
     # display most frequent combination of start station and end station trip
-
     df['most_common_start_to_end_stations'] = df['Start Station']+" to "+df['End Station']
     print("The most frequent combination for start to end station : {}".format(df['most_common_start_to_end_stations'].mode()[0]))
 
@@ -168,12 +159,10 @@ def trip_duration_stats(df):
     start_time = time.time()
 
     # display total travel time
-
     total_travel = df['Trip Duration'].sum()
     print("Total travel time :", total_travel)
 
     # display mean travel time
-    
     mean_travel = df['Trip Duration'].mean()
     print("Mean travel time :", mean_travel)
 
@@ -189,7 +178,6 @@ def user_stats(df):
     start_time = time.time()
 
     # Display counts of user types
-
     user_counts = df['User Type'].value_counts()
     print("Counts of user types:\n",user_counts)
 
@@ -236,11 +224,13 @@ def main():
         # Getting required parameters for stats functions
         city, month, day = get_filters()
         df = load_data(city, month, day)
+	
         # Stats functions
         time_stats(df,day,month)
         station_stats(df)
         trip_duration_stats(df)
         user_stats(df)
+	
         # Asking the user if they want to restart the program
         restart = input('\nWould you like to restart? Enter yes or no \n')
         if restart.lower() != 'yes':
@@ -250,13 +240,13 @@ def main():
     count=5
     checker='yes'
     while checker=='yes':
-        checker=input('do you want to explore raw input? \nenter yes for more or anything else to exit \n').lower()
+        checker=input('Do you want to explore raw input? \nenter yes for more or anything else to exit\n>').lower()
         if checker!='yes':
             break
         else:
             print(df.head())
         while True:
-            checker=input("Do you want to display more raw input? enter yes for more or anything else to exit \n").lower()
+            checker=input("Do you want to display more raw input? enter yes for more or anything else to exit\n>").lower()
             if checker!='yes':
                 break
             else:
