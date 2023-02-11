@@ -3,8 +3,7 @@ import pandas as pd
 
 CITY_DATA = { 'chicago': 'chicago.csv',
               'new york city': 'new-york-city.csv',
-              'washington': 'washington.csv' }
-            
+              'washington': 'washington.csv' }     
 
 def get_filters():
     """
@@ -22,51 +21,41 @@ def get_filters():
     print('Hello! Let\'s explore some US bikeshare data!')
 
     while True:
-        try:
-            city = input('Would you like to see data for Chicago, New York City or Washington? \n>').lower()
-            if city in CITY_DATA.keys():
-                break
-        except:
-            print('Error. Please enter chicago, new york city or washington.\n')
+        city = input('Would you like to see data for Chicago, New York City or Washington? \n>').lower()
+        if city in CITY_DATA.keys():
+            break
+        print("You entered an invalid city\n")
         
     while True:
-        try:
-            filters =input('Would you like to filter by month, day, both, or none? \n>').lower()
-            if filters in ['day','month','both','none']:
-                break
-        except:
-            print('Error. please try again.')  
+        filters =input('Would you like to filter by month, day, both, or none? \n>').lower()
+        if filters in ['day','month','both','none']:
+            break
+        print('Error. try again.')  
 
     if filters=='month':
         while True:
-            try:
-                month=input('Which month? {} \n>'.format(months)).lower()
-                if month in months:
-                    break
-            except:
-                print("Error. try again")
+            month=input('Which month? {} \n>'.format(months)).lower()
+            if month in months:
+                break
+        print("Error. try again")
 
         day='all'
 
     elif filters=='day':
         while True:
-            try:
-                day=input('Which day? {} \n>'.format(days)).title()
-                if day in days:
-                    break
-            except:
-                print("Error. try again")
+            day=input('Which day? {} \n>'.format(days)).title()
+            if day in days:
+                break
+            print("Error. try again")
         month='all'
     
     elif filters=='both':
         while True:
-            try:
-                month=input('Which month? {} \n>'.format(months)).lower()
-                day=input('Which day? {} \n>'.format(days)).title()
-                if month in months and day in days:
-                    break           
-            except:
-                print("Error. try again") 
+            month=input('Which month? {} \n>'.format(months)).lower()
+            day=input('Which day? {} \n>'.format(days)).title()
+            if month in months and day in days:
+                break           
+            print("Error. try again") 
     
     else:
         month,day='all','all'
@@ -127,7 +116,7 @@ def time_stats(df,day,month):
 
 
     # display the most common start hour
-
+    print("The most common hour is :", df.hour.mode()[0])
 
 
 
@@ -185,7 +174,7 @@ def trip_duration_stats(df):
 def user_stats(df):
     """Displays statistics on bikeshare users."""
 
-    print('\nCalculating User Stats...\n')
+    print('\nCalculating User Stats..\n')
     start_time = time.time()
 
     # display counts of user types
